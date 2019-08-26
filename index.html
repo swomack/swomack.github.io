@@ -5,14 +5,35 @@
     <title>360&deg; Image</title>
     <meta name="description" content="360&deg; Image - A-Frame">
     <script src="js/libs/aframe-master.js"></script>
+    <script src="js/audioHandler.js"></script>
   </head>
   <body>
+    
     <a-scene>
-      <a-sky src="puydesancy.jpg" rotation="0 -130 0"></a-sky>
 
-      <a-text font="kelsonsans" value="Puy de Sancy, France" width="6" position="-2.5 0.25 -1.5"
-              rotation="0 15 0"></a-text>
-        <a-sound src="alarm1.mp3" autoplay="true" loop= "true" position="0 2 5"></a-sound>
+        <a-assets>
+            <!-- Audio Assets -->
+            <audio id="espressoMachine" src="alarm1.mp3"></audio>
+          </a-assets>
+
+      <a-sky src="puydesancy.jpg" rotation="0 -130 0"></a-sky>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" sound="src: #espressoMachine; volume: 1; on:
+      click" shadow></a-sphere>
+
+      <a-entity id="rig" movement-controls position="0 0 0">
+          <!-- Camera -->
+          <a-entity camera position="0 0.5 1.5" look-controls="pointerLockEnabled:
+            true">
+  
+            <!-- Cursor -->
+            <a-entity cursor raycaster="far: 100.5" position="0 0 -0.3"
+              geometry="primitive: ring; radiusInner: 0.003; radiusOuter: 0.005"
+              material="color: #EE6C15">
+            </a-entity>
+          </a-entity>
+  
+        </a-entity>
+
     </a-scene>
   </body>
 </html>
